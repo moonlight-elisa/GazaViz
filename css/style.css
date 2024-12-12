@@ -1,0 +1,213 @@
+/* Init */
+
+* {
+    margin: 0px;
+    padding: 0px; 
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: lightgrey;
+}
+
+body {
+    background-color: #0F0F14;
+}
+
+/* Header */
+
+header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 94px;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+/* Section */
+
+section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 100px 0px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1240px;
+    padding: 0px 20px;
+}
+
+.col-1-2 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.col-1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Palestine flag animation */
+
+.svg-flag {
+    width: 100%;
+    height: auto;
+}
+
+@keyframes animateCircle1 {
+    0% { r: 50px; }
+    50% { r: 30px; }
+    100% { r: 50px; }
+}
+
+@keyframes animateCircle2 {
+    0% { r: 50px; }
+    50% { r: 30px; }
+    100% { r: 50px; }
+}
+
+@keyframes animateCircle3 {
+    0% { r: 50px; }
+    50% { r: 30px; }
+    100% { r: 50px; }
+}
+
+.animate1 {
+    animation: animateCircle1 3s ease-in-out infinite;
+}
+ 
+.animate2 {
+    animation: animateCircle2 5s ease-in-out infinite;
+}
+
+.animate3 {
+    animation: animateCircle3 8s ease-in-out infinite;
+}
+
+/* Text */
+
+.p-huge {
+    font-size: 150px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.p-medium {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.p-red {
+    color: #ED2E38;
+}
+
+.p-green {
+    color: #009639;
+}
+
+a {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 70px;
+    line-height: 1;
+    margin: 0 0 20px;
+}
+
+/* Range */
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    margin: 20px 0 0;
+}
+  
+/* Removes default focus */
+input[type="range"]:focus {
+    outline: none;
+}
+  
+/* Chrome, Safari, Opera and Edge Chromium styles **/
+/** slider track **/
+input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #000000;
+    border-radius: 100px;
+    height: 28px;
+}
+  
+/** slider thumb **/
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /** Override default look **/
+    appearance: none;
+    margin-top: 0px; /** Centers thumb on the track **/
+    background-color: #ED2E38;
+    border-radius: 100px;
+    height: 36px;
+    width: 36px;
+    transform: translateY(-4px);
+}
+  
+/** Firefox styles **/
+/** slider track **/
+input[type="range"]::-moz-range-track {
+    background-color: #000000;
+    border-radius: 100px;
+    height: 28px;
+}
+  
+/** slider thumb **/
+input[type="range"]::-moz-range-thumb {
+    background-color: #ED2E38;
+    border: none; /** Removes extra border that FF applies **/
+    border-radius: 100px;
+    height: 36px;
+    width: 36px;
+}
+
+/** Canvas year map **/
+
+#map-canvas {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/** Video **/
+
+video {
+    width: 100%;
+    background-color: #000000;
+    border-radius: 20px;
+}
+
+/** Canvas Daily deaths **/
+
+#daily-deaths-canvas {
+    border-radius: 20;
+}
