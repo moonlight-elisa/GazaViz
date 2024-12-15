@@ -13,19 +13,23 @@
 </head>
 <body>
     <header>
-        <img class="logo" src="img/drapeau-palestine.svg" alt="Drapeau de la palestine">
+        <a href="index.html">
+            <img class="logo" src="img/drapeau-palestine.svg" alt="Drapeau de la palestine">
+        </a>
         <ul class="menu">
-            <li>Ui</li>
-            <li>Ui</li>
-            <li>Ui</li>
+            <li><a href="index.html#nav-daily-deaths">Daily deaths</a></li> 
+            <li><a href="index.html#nav-daily-casualties">Daily casualties</a></li>
+            <li><a href="index.html#nav-deaths">Deaths</a></li>
+            <li><a href="index.html#nav-donation">Support</a></li>
         </ul>
     </header>
+
     <section>
         <div class="container">
             <div class="col-1-2">
                 <div>
-                    <p class="p-huge p-red">51%</p>
-                    <p class="p-medium">of Gaza dead in 2024</p>
+                    <p class="p-huge p-red">4 807</p>
+                    <p class="p-medium">poeple of Gaza dead in January 2024</p>
                 </div>
                 <div>
                     <svg class="svg-flag" width="1100" height="900" viewBox="0 0 1100 900" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,22 +149,56 @@
             </div>
         </div>
     </section>
-    <section>
+    <section class="fullsize-img" fullsize-index="1">
+        <p>© The pace of Israel's war in Gaza far exceeds previous conflicts / The Economist</p>
+    </section>
+    <section id="nav-daily-deaths">
         <div class="container">
-            <h2>Gaza deaths <span class="p-green">in 2024</span></h2>
+            <h2>Gaza <span class="p-red">daily deaths</span></h2>
+            <div class="canvas-container">
+                <canvas id="daily-deaths-canvas" width="1200" height="600"></canvas>
+            </div>
+        </div>
+    </section>
+    <section class="fullsize-img" fullsize-index="2">
+        <p>© Depuis Gaza, les habitantes impuissantes témoignent : « Nous sommes tous  piégés, comme condamnés à mort » / Elle</p>
+    </section>
+    <section id="nav-daily-casualties">
+        <div class="container">
+            <h2>Gaza <span class="p-green">daily casualties</span></h2>
+            <div class="canvas-container">
+                <canvas id="daily-casualties-canvas" width="1200" height="600"></canvas>
+            </div>
+        </div>
+    </section>
+    <section class="fullsize-img" fullsize-index="3">
+        <p>© Le rapport de la rapporteuse spéciale de l'ONU sur Gaza apporte des  éléments cruciaux : la communauté internationale doit agir afin d'éviter un  génocide / Amnesty International</p>
+    </section>
+    <section id="nav-deaths">
+        <div class="container">
+            <h2>Gaza deaths <span class="p-red">in 2024</span></h2>
             <video autoplay muted loop height="600">
                 <source src="videos/gaza-deaths.mp4" type="video/mp4"/>
             </video>
         </div>
     </section>
-    <section>
+    <section class="help-section nav-donation">
         <div class="container">
-            <h2>Gaza daily deaths</h2>
-            <canvas id="daily-deaths-canvas" width="1200" height="800"></canvas>
+          <h2>Support <span class="p-green">Palestinians</span></h2>
+          <p class="section-description">
+            Join us in providing support to those in need. Click the link below to learn more about how you can help.
+          </p>
+          <a href="https://www.anera.org" target="_blank" class="button-link">
+            <button class="hover-button">Help Now</button>
+          </a>
         </div>
-    </section>
-    <section>
-        <a href="mentions_légales.html">Mentions légales</a>
-    </section>      
+      </section>
+    <footer>
+        <section>
+            <a href="mentions_legales.html">Legal notices</a>
+        </section>      
+    </footer>
 </body>
 </html>
+
+https://acleddata.com/2024/10/10/israels-gaza-middle-east-a-year-in-numbers/

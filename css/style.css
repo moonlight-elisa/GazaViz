@@ -12,11 +12,13 @@
 
 body {
     background-color: #0F0F14;
+    scroll-behavior: smooth;
 }
 
 /* Header */
 
 header {
+    z-index: 1000;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -26,6 +28,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #0F0F14;
 }
 
 .logo {
@@ -36,6 +39,10 @@ header {
     list-style: none;
     display: flex;
     gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
 }
 
 /* Section */
@@ -65,6 +72,11 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
+}
+
+.bg-black {
+    background-color: #000000;
+    border-radius: 0 120px 0 0;
 }
 
 /* Palestine flag animation */
@@ -107,7 +119,7 @@ section {
 /* Text */
 
 .p-huge {
-    font-size: 150px;
+    font-size: 130px;
     line-height: 1;
     font-weight: 700;
 }
@@ -125,9 +137,22 @@ section {
     color: #009639;
 }
 
+.lien {
+    font-size: 20px;
+    font-weight: 300;
+    padding: 20px 0 0 0;
+}
+
 a {
     font-size: 20px;
     font-weight: 300;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 100px;
+    line-height: 1;
+    margin: 0 0 20px;
 }
 
 h2 {
@@ -208,6 +233,93 @@ video {
 
 /** Canvas Daily deaths **/
 
-#daily-deaths-canvas {
-    border-radius: 20;
+.canvas-container {
+    width: 100%;
+    overflow-x: scroll;
+    background-color: #000000;
+    border-radius: 20px;
+    padding: 0 0 20px;
+}
+
+.canvas-container::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
+  
+.canvas-container::-webkit-scrollbar-track {
+    background: #0F0F14; /* color of the tracking area */
+    border: 3px solid #000000;
+    border-radius: 20px;
+}
+  
+.canvas-container::-webkit-scrollbar-thumb {
+    background-color: #ffffff; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid #000000; /* creates padding around scroll thumb */
+}
+
+/** Image full size **/
+
+.fullsize-img {
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    align-items: flex-end;
+    justify-content: left;
+    filter: grayscale(100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.fullsize-img:hover {
+    filter: none;
+}
+
+.fullsize-img[fullsize-index="1"] {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(../img/alone_man.jpg);
+}
+
+.fullsize-img[fullsize-index="2"] {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(../img/gaza_war_city.jpg);
+}
+
+.fullsize-img[fullsize-index="3"] {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(../img/family.jpg);
+}
+
+/** Section support **/
+
+.help-section {
+    padding: 20px;
+    text-align: center;
+    border-radius: 0 0 10px 0;
+    margin: 20px 0;
+}
+
+
+.section-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.button-link {
+    text-decoration: none;
+}
+
+.hover-button {
+    background-color: #ED2E38;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hover-button:hover {
+    background-color: #ff3e48;
+    transform: scale(1.05);
 }
