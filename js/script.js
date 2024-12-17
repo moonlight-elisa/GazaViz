@@ -135,57 +135,24 @@ Animation des ronds de l'image svg
 *******************************/
 
 const circles = document.querySelectorAll('.svg-flag__circle');
-const transitionDelay = 1000; // Délai pour réactiver une animation
 const intervalDuration = 5000; // Durée entre chaque cycle d'animation
 
 function animateCircles() {
     circles.forEach(circle => {
-        // Retire les animations précédentes
-        (transitionDelay, intervalDuration)
-        circle.classList.remove('animate1', 'animate2', 'animate3');
+        // Écoute la fin de l'animation pour retirer les classes
+        circle.addEventListener('animationend', () => {
+            circle.classList.remove('animate1', 'animate2', 'animate3');
+        });
 
-        // Délai pour permettre une transition fluide entre les états
-        setTimeout(() => {
-            // Choisit une animation aléatoire
-            const randomAnimation = Math.floor(Math.random() * 3) + 1; // 1 à 3
-            circle.classList.add(`animate${randomAnimation}`);
-        }, transitionDelay, intervalDuration); // Petit délai pour activer la transition
+        // Choisit une animation aléatoire
+        const randomAnimation = Math.floor(Math.random() * 3) + 1; // 1 à 3
+        circle.classList.add(`animate${randomAnimation}`);
     });
 }
     // Commence l'animation immédiatement
     animateCircles();
 
-    // Fait une animation toutes les 5 secondes
-    setInterval(animateCircles, 5000); 
+    // Répète l'animation toutes les 5 secondes
+    setInterval(animateCircles, intervalDuration);
 
-});
-
-
-/******************************
-Smooth Scroll
-*******************************/
-
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-});
+}); 
