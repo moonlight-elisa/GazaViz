@@ -310,14 +310,13 @@ input[type="range"]::-moz-range-thumb {
     background-color: #ED2E38;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .hover-button:hover {
-    background-color: #ff3e48;
-    transform: scale(1.05);
+    background-color: #ff565e;
 }

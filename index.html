@@ -141,13 +141,17 @@
         <div class="container">
             <div class="col-1-1">
                 <div>
-                    <h2>Gaza dies map</h2>
-                    <p id="map-year-display" class="p-huge p-red"></p>
-                    <input id="map-year" class="range" name="map-year" min="2020" max="2024" value="2020" type="range">
+                    <h2>Gaza <span class="p-green">dies</span> map</h2>
+                    <p id="destroyed-buildings" class="p-medium p-red">Bâtiments détruits : <span id="buildings-count">0</span></p>
+                    <input id="map-date" class="range" name="map-date" min="0" max="14" value="0" type="range">
+                    <br><br>
+                    <p id="map-date-text" class="p-medium">Octobre 2023</span></p>
                 </div>
-                <canvas id="map-canvas" width="500" height="600"></canvas>
-            </div>
-        </div>
+                <div id="map-svg-container">
+                    <object class="fade-out" id="map-svg" data="img/gaza-map.svg" type="image/svg+xml" width="500" height="600"></object>
+                </div>
+            </div>                
+        </div>            
     </section>
     <section class="fullsize-img" fullsize-index="1">
         <p>© The pace of Israel's war in Gaza far exceeds previous conflicts / The Economist</p>
@@ -190,7 +194,7 @@
             </div>
         </div>
     </section>
-    <section class="help-section nav-donation">
+    <section class="help-section" id="nav-donation">
         <div class="container">
           <h2>Support <span class="p-green">Palestinians</span></h2>
           <p class="section-description">

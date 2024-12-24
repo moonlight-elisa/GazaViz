@@ -4,45 +4,97 @@ document.addEventListener("DOMContentLoaded", (event) => {
 Changement de l'année par rapport au curseur
 *******************************/
 
-var mapYear = document.getElementById("map-year"); //Selectionne la barre de l'année
-var mapYearDisplay = document.getElementById("map-year-display"); //Le nombre correspond à l'année
+// Sélectionne les éléments
+var mapDate = document.getElementById("map-date");
+var mapDateText = document.getElementById("map-date-text");
+var mapSvgContainer = document.getElementById("map-svg-container"); // Mettre l'objet SVG dans un conteneur div
+var buildingsCount = document.getElementById("buildings-count");
 
-function changeMapYear() {
-    //Afficher l'année
-    mapYearDisplay.innerHTML = mapYear.value;
+// Tableau des noms des mois
+const months = [
+    "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+    "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+];
 
-    //Mise à jour de la carte en fonction de l'année
-    const mapCanvas = document.getElementById("map-canvas");
-    const ctx = mapCanvas.getContext("2d");
+// Fonction pour regrouper les données par mois
+function groupDataByMonth(data) {
+    const groupedData = {};
 
-    let img = new Image();
-    img.src = "img/gaza-map-" + mapYear.value + ".svg"; 
+    data.forEach(report => {
+        const date = new Date(report.report_date);
+        const month = date.getMonth() + 1; // getMonth() retourne les mois de 0 à 11
+        const year = date.getFullYear();
+        const key = `${year}-${month}`;
 
-    img.addEventListener("load", function () {
-        const imgRatio = img.width / img.height;
-        const canvasRatio = mapCanvas.width / mapCanvas.height;
+        if (!groupedData[key]) {
+            groupedData[key] = {
+                civic_destroyed: 0,
+            };
+        }
 
-        let drawWidth, drawHeight;
-      
-        if (imgRatio > canvasRatio) {
-          // L'image est plus large que le canevas
-          drawWidth = mapCanvas.width;
-          drawHeight = mapCanvas.width / imgRatio;
-        } 
-        else {
-          // L'image est plus haute ou égale en ratio
-          drawHeight = mapCanvas.height;
-          drawWidth = mapCanvas.height * imgRatio;
-        } 
-        const drawX = (mapCanvas.width - drawWidth) / 2;
-        const drawY = (mapCanvas.height - drawHeight) / 2;
-        ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
-    }); 
+        if (report.civic_buildings) {
+            groupedData[key].civic_destroyed += report.civic_buildings.ext_destroyed || 0;
+        }
+    });
+
+    return groupedData;
 }
 
-changeMapYear(); //Affichage de l'année au chargement de la page
+// Chargement des données JSON depuis l'URL locale
+var data;
+fetch('./json/infrastructure-damaged.json')
+    .then(response => response.json())
+    .then(jsonData => {
+        console.log('Données JSON chargées :', jsonData);
+        data = groupDataByMonth(jsonData);
+        changeMapDate(); // Initialisation après le chargement des données
+    })
+    .catch(error => {
+        console.error('Erreur de chargement des données JSON :', error);
+    });
 
-mapYear.addEventListener("change", changeMapYear); //Quand on bouge le curseur on change l'année
+function changeMapDate() {
+    // Calcule le mois et l'année
+    const totalMonths = parseInt(mapDate.value, 10);
+    const startingMonth = 9; // Octobre comme index 9
+    const selectedYear = 2023 + Math.floor((totalMonths + startingMonth) / 12);
+    const selectedMonth = (totalMonths + startingMonth) % 12 + 1;
+
+    console.log('Mois et année sélectionnés :', selectedMonth, selectedYear);
+
+    mapDateText.innerHTML = `${months[selectedMonth - 1]} ${selectedYear}`;
+
+    // Ajout d'un paramètre unique pour forcer le rechargement de l'image SVG
+    const svgPath = `img/gaza-map-${selectedMonth}-${selectedYear}.svg?cache_buster=${new Date().getTime()}`;
+
+    // Gestion de la transition d'opacité
+    mapSvgContainer.classList.add('fade-out');
+    setTimeout(() => {
+        mapSvgContainer.innerHTML = `<object id="map-svg" data="${svgPath}" type="image/svg+xml" width="500" height="600"></object>`;
+        mapSvgContainer.classList.remove('fade-out');
+    }, 500); // Durée de la transition en millisecondes
+
+    // Vérification du chemin de l'image
+    console.log('Chemin de l\'image SVG :', svgPath);
+
+    // Afficher le nombre de bâtiments civiques détruits pour le mois et l'année sélectionnés
+    const key = `${selectedYear}-${selectedMonth}`;
+    const report = data[key];
+        
+    let civicDestroyed = 0; // Initialisation de la variable
+
+    if (report) {
+        civicDestroyed = report.civic_destroyed;
+    }
+
+    buildingsCount.innerHTML = civicDestroyed;
+
+    console.log('Données pour la clé:', key);
+    console.log('Bâtiments civiques détruits :', civicDestroyed);
+}
+
+// Écouteurs d'événements pour mettre à jour l'image lors des changements
+mapDate.addEventListener("input", changeMapDate);
 
 
 /**************************
